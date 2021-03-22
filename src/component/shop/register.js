@@ -1,11 +1,11 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState} from 'react';
 function Register() {
     // const [userdetails,setUserdetails]=useState([]);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [age, setage] = useState("");
     const [password, setpassword] = useState("");
-    let arr =new Array();
+    let arr =new Array([]);
     console.log(username, email, age, password);
     // let userdetails = new Array();
      let savedetails =async() => {
