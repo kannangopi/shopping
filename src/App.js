@@ -2,6 +2,7 @@ import './App.css';
 import Home from './component/shop/home';
 import Login from './component/shop/login';
 import Register from './component/shop/register';
+import Purchase from './component/shop/purchase';
 import {
   BrowserRouter as Router,
   Route,
@@ -21,7 +22,9 @@ function App() {
           <Route exact path="/home" component={Home}></Route>
           <Route exact path="/register" component={Register}></Route>
           <Route path="/login" component = {Login}></Route>
+          <Route path="/purchase" component={Purchase}></Route>
         </Switch>
+        
       </div>
     </Router>
   );

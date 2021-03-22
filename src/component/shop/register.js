@@ -1,36 +1,41 @@
 import React, { useState,useEffect } from 'react';
 function Register() {
-    const [userdetails,setUserdetails]=useState([]);
+    // const [userdetails,setUserdetails]=useState([]);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [age, setage] = useState("");
     const [password, setpassword] = useState("");
+    let arr =new Array();
     console.log(username, email, age, password);
     // let userdetails = new Array();
-    var save =() => {
+     let savedetails =async() => {
         let temp = localStorage.getItem("shopuser");
+        console.log(temp);
         if (temp != null) {
-            let userdetails = JSON.stringify(temp);
-            console.log(userdetails);
+           arr = await JSON.parse(temp);
+        // setUserdetails(JSON.parse(temp));
+            console.log(arr);
+
+        // console.log(userdetails)
         }
-        userdetails.push({
+        arr.push({
             username: username,
             email: email,
             age: age,
             password: password
-        })
-        localStorage.setItem("shopuser",JSON.stringify(userdetails));
+        });
+        localStorage.setItem("shopuser",JSON.stringify(arr));
         
     }
     
     
     return (
         <div>
-            <label>FIRST NAME</label><input type="text" onChange={(e) => { setUsername(e.target.value) }}></input><br></br>
+            <label>USER NAME</label><input type="text" onChange={(e) => { setUsername(e.target.value) }}></input><br></br>
             <label>EMAIL ID</label><input type="text" onChange={(e) => { setEmail(e.target.value) }}></input><br></br>
             <label>age</label><input type="text" onChange={(e) => { setage(e.target.value) }}></input><br></br>
             <label>password</label><input type="text" onChange={(e) => { setpassword(e.target.value) }}></input><br></br>
-            <button onClick={save}>SUBMIT</button>
+            <button onClick={savedetails}>SUBMIT</button>
         </div>
     );
 
