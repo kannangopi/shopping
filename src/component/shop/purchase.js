@@ -45,11 +45,11 @@ export default function Purchase() {
     <div>
       <h1>Purchase</h1>
       <div className="divset">
+      <Link to="/cart"><img className="shopcart" src={basket} onClick={gotoCart}></img></Link>
 
       </div>
-      <div>
-        <Link to="/cart"><img className="shopcart" src={basket} onClick={gotoCart}></img></Link>
-        </div>
+      
+        
       {/* <Router></Router> */}
       <table>
         {temparr.map((item, index) => {
