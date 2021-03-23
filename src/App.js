@@ -19,7 +19,7 @@ function App() {
         <Link to="/home">HOME</Link>
         <Link to="/register">REGISTER</Link>
         <Link to="/login">LOGIN</Link>
-        <Link to="/cart">CART</Link>
+        {/* <Link to="/cart" >CART</Link> */}
         <Switch>
           <Route exact path="/home" component={Home}></Route>
           <Route exact path="/register" component={Register}></Route>

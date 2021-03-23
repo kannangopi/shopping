@@ -21,7 +21,7 @@ function Login(){
             alert("type correct username and password");
             
         }else{
-            setTimeout(()=>window.location.href="/purchase",2000)
+            setTimeout(()=>window.location.href="/purchase")
         }
         
         
