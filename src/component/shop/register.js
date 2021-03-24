@@ -1,12 +1,17 @@
 import React, { useState } from "react";
 import "./register.css";
+import {
+  BrowserRouter as Router,
+  Route,
+   Link,
+    Switch
+} from 'react-router-dom';
 function Register() {
-  // const [userdetails,setUserdetails]=useState([]);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [age, setage] = useState("");
   const [password, setpassword] = useState("");
-  let arr = new Array([]);
+  let arr = new Array();
   console.log(username, email, age, password);
   // let userdetails = new Array();
   let savedetails = async () => {
@@ -14,10 +19,8 @@ function Register() {
     console.log(temp);
     if (temp != null) {
       arr = await JSON.parse(temp);
-      // setUserdetails(JSON.parse(temp));
       console.log(arr);
-
-      // console.log(userdetails)
+      
     }
     arr.push({
       username: username,
@@ -26,36 +29,16 @@ function Register() {
       password: password,
     });
     localStorage.setItem("shopuser", JSON.stringify(arr));
+    alert("user registered");
+    setUsername("");
+    setEmail("");
+    setage("");
+    setpassword("");
   };
 
   return (
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+ 
     <div>
-
-      
-
-      
-            
-      
-
-
-
-
-
-
-
-
-
 
       <div className="p">
         <table className=".styled-table">
@@ -64,6 +47,7 @@ function Register() {
             <td>
               <input
                 type="text"
+                  value={username}
                 onChange={(e) => {
                   setUsername(e.target.value);
                 }}
@@ -75,6 +59,7 @@ function Register() {
             <td>
               <input
                 type="text"
+                value={email}
                 onChange={(e) => {
                   setEmail(e.target.value);
                 }}
@@ -86,6 +71,7 @@ function Register() {
             <td>
               <input
                 type="text"
+                value={age}
                 onChange={(e) => {
                   setage(e.target.value);
                 }}
@@ -97,6 +83,7 @@ function Register() {
             <td>
               <input
                 type="text"
+                value={password}
                 onChange={(e) => {
                   setpassword(e.target.value);
                 }}
@@ -105,8 +92,8 @@ function Register() {
           </tr>
           <tr>
             <td></td>
-            <td>
-              <button className="btn btn-primary btn-block btn-large" onClick={savedetails}>SUBMIT</button>
+            <td><Link to="/login"><button className="btn btn-primary btn-block btn-large" onClick={savedetails}>SUBMIT</button></Link>
+              
             </td>
           </tr>
         </table>

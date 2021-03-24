@@ -2,8 +2,9 @@ import React, { Component, useEffect } from "react";
 import Purchase from "./purchase";
 import './cart.css'
 export default function Cart() {
+  let arr =new Array([]);
   let temp = localStorage.getItem("cart");
-  let arr = JSON.parse(temp);
+   arr = JSON.parse(temp);
   let sum = 0;
   arr.map((item, index) => {
     sum += item.price*item.count;
