@@ -1,11 +1,12 @@
 import React, { Component, useEffect } from "react";
 import Purchase from "./purchase";
+import './cart.css'
 export default function Cart() {
   let temp = localStorage.getItem("cart");
   let arr = JSON.parse(temp);
   let sum = 0;
   arr.map((item, index) => {
-    sum += item.price;
+    sum += item.price*item.count;
     return sum;
   });
   console.log(sum);
@@ -16,16 +17,34 @@ export default function Cart() {
     if (temp != null) {
       newcart = JSON.parse(temp);
     }
-    // delete newcart[index];
     newcart.splice(index, 1);
     localStorage.setItem("cart", JSON.stringify(newcart));
-    // console.log(newcart);
     window.location.href = "/cart";
   };
+  let incCount=(arr,index)=>{
+    for(var i in arr ){
+      if( arr[i].id == index){
+        arr[i].count+=1;
+        localStorage.setItem("cart",JSON.stringify(arr));
+      }
+      window.location.href="/cart";
+    }
+  }
+  let decCount =(arr,index)=>{
+    for(var i in arr ){
+      if(arr[i].count == 0){
+        remove(index);
+      }else if( arr[i].id == index){
+        arr[i].count-=1;
+        localStorage.setItem("cart",JSON.stringify(arr));
+      }
+      window.location.href="/cart";
+    }
+  }
   return (
     <div>
       <h1>CART</h1>
-      <button
+      <button  className="btn btn-primary btn-block btn-large"
         onClick={() => {
           window.location.href = "/purchase";
         }}
@@ -39,16 +58,23 @@ export default function Cart() {
               <td>
                 <img className="lap" src={item.ph} />
               </td>
-              <td>{item.price}</td>
               <td>
-                <button onClick={() => remove(index)}>remove from cart</button>
+              {item.price}
+              </td>
+              <td>
+                <button className="button" onClick={()=>decCount(arr,item.id)}>-</button>
+                {item.count}
+                <button className="button" onClick={()=>incCount(arr,item.id)}>+</button>
+              </td>
+              <td>
+                <button className="btn btn-primary btn-block btn-large" onClick={() => remove(index)}>remove from cart</button>
               </td>
             </tr>
           );
         })}
         <tr>
-          <td >Total</td>
-          <td >{sum}</td>
+          <td ></td>
+          <td >Total  ={sum}</td>
         </tr>
       </table>
       <br></br>

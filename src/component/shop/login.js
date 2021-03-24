@@ -1,5 +1,7 @@
 import React, {useState} from 'react';
 import {withRouter} from 'react-router';
+import './login.css'
+import "bootstrap/dist/css/bootstrap.min.css";
 function Login(){
     let [userdetails,setUserdetails] = useState('');
     const [checkname, setCheckname] = useState('');
@@ -27,10 +29,38 @@ function Login(){
         
     }
     return(
-        <div>
-            <label>name </label><input type="text" onChange={e=>{setCheckname(e.target.value)}}></input><br></br>
-            <label>password</label><input type="password" onChange={e=>{setCheckpassword(e.target.value)}}></input>
-            <button onClick={check}>Login</button>
+        <div> 
+             
+                      
+            <div className="login">
+                <h1>LOGIN</h1>
+                <table >
+                    <tr>
+                        <td>
+                            USERNAME
+
+                        </td>
+                        <td>
+                        <input type="text" onChange={e=>{setCheckname(e.target.value)}}></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            PASSWORD
+
+                        </td>
+                        <td>
+                        <input type="password" onChange={e=>{setCheckpassword(e.target.value)}}></input>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                        <button className="btn btn-primary btn-block btn-large" onClick={check}>Login</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
         </div>
     );
 }

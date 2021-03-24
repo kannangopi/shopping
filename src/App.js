@@ -14,6 +14,7 @@ import {
 
 function App() {
   return (
+    <div>
     <Router>
       <div className="App">
         <Link to="/home">HOME</Link>
@@ -30,6 +31,7 @@ function App() {
         
       </div>
     </Router>
+    </div>
   );
 }
 

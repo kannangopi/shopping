@@ -9,79 +9,79 @@ import "./pur.css"
 export default function Purchase() {
   let cart = new Array();
   const [arr, setArr] = useState([]);
-  arr.push(
+  arr.push(                                                       //available items for shopping
     {
+      id:"p01",
       ph: notebook,
       name:"HPnotebook",
-      price: 22300
+      price: 22300,
+      count:1
+      
     },
     {
+      id:"p02",
       ph: g6,
       name:'HPG6',
-      price: 40000
+      price: 40000,
+      count:1
     },
-    {
+    { 
+      id:"p03",
       ph: panache,
       name:'HPpanache',
-      price: 50000
+      price: 50000,
+      count:1
     }
   );
   localStorage.setItem("laptop", JSON.stringify(arr));
   let temp = localStorage.getItem("laptop");
   let temparr = JSON.parse(temp);
 
-  let add = (index) => {
+  let add = (index,pid) => {                                      // add items to cart
     let temp = arr[index];
     let oldcart = localStorage.getItem("cart");
     if (oldcart != null) {
       cart = JSON.parse(oldcart);
+      let chk =cart.filter((value,index)=>{                     //checking duplication
+        return value.id === pid;
+      });
+      if(chk.length != 0){
+       alert("already added to cart.....! ")
+        
+      }else{
+        alert(`${temp.name} added to cart`);
+        cart.push(temp); 
+      }
+      console.log(chk);
+       
+    }else{
+      alert(`${temp.name} added to cart`);
+      cart.push(temp);
     }
-    cart.push(temp);
+    
+    
     localStorage.setItem("cart", JSON.stringify(cart));
-    alert(`${temp.name} added to cart`);
-  };
-  let gotoCart=()=>{console.log("image")}
+  };                          
   return (
     <div>
       <h1>Purchase</h1>
       <div className="divset">
-      <Link to="/cart"><img className="shopcart" src={basket} onClick={gotoCart}></img></Link>
-
+      <Link to="/cart"><img className="shopcart" src={basket} ></img></Link>                
       </div>
-      
-        
-      {/* <Router></Router> */}
       <table>
-        {temparr.map((item, index) => {
+        {temparr.map((item, index) => {                          //display items form shopping
           return (
             <tr key={index}>
               <td>
                 <img className="lap" src={item.ph} />
               </td>
               <td>
-                <button onClick={() => add(index)}>ADD TO CART</button>
+                <button className="btn btn-primary btn-block btn-large" onClick={() => add(index,item.id)}>ADD TO CART</button>
               </td>
             </tr>
           );
         })}
-        {/* <tr> 
-                    <td ><img className="lap"  src={notebook}></img></td>
-                    <td> <button>add to cart</button></td>
-                </tr>
-                <tr>
-                    <td>
-                        <img className="lap" src={g6}/>
-                    </td>
-                    <td>
-                        <button>add to cart</button>
-                    </td>
-                    <td>
-                        <img className="lap" src={panache}/>
-                    </td>
-                    <td>
-                        <button>add to cart</button>
-                    </td>
-                </tr> */}
+
       </table>
     </div>
   );
