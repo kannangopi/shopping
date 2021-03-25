@@ -20,8 +20,7 @@ function Login(){
             
         }));
         if( pass.length === 0){
-            alert("type correct username and password");
-            
+            alert("type correct username and password");  
         }else{
             setTimeout(()=>window.location.href="/purchase")
         }

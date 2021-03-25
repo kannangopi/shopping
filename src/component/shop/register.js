@@ -11,29 +11,52 @@ function Register() {
   const [email, setEmail] = useState("");
   const [age, setage] = useState("");
   const [password, setpassword] = useState("");
+  const [cpassword,setCpassword] = useState("");
   let arr = new Array();
   console.log(username, email, age, password);
   // let userdetails = new Array();
   let savedetails = async () => {
-    let temp = localStorage.getItem("shopuser");
-    console.log(temp);
-    if (temp != null) {
-      arr = await JSON.parse(temp);
-      console.log(arr);
-      
+
+
+    if(username === null ||email === null || age === null || password === null || cpassword === null){
+      alert("enter all details");
+    }else if((!/^[a-zA-Z]*$/g.test(username)) )
+    {
+      alert("enter valid user name");
     }
-    arr.push({
-      username: username,
-      email: email,
-      age: age,
-      password: password,
-    });
-    localStorage.setItem("shopuser", JSON.stringify(arr));
-    alert("user registered");
+    else if((! /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/g.test(email))){
+      alert("enter valid email address");
+    }else if((!/^[0-9]*$/g.test(age)) && age<=90){
+      alert("enter valid age");
+    }else if(password !== cpassword){
+      alert("password don't matching");
+    }else {
+
+      let temp = localStorage.getItem("shopuser");
+      console.log(temp);
+      if (temp != null) {
+        arr = await JSON.parse(temp);
+        console.log(arr);
+        
+      }
+      arr.push({
+        username: username,
+        email: email,
+        age: age,
+        password: password,
+      });
+      localStorage.setItem("shopuser", JSON.stringify(arr));
+      alert("user registered");
+      window.location.href="/login";
+
+
+    } 
+ 
     setUsername("");
     setEmail("");
     setage("");
     setpassword("");
+    setCpassword("");
   };
 
   return (
@@ -91,8 +114,20 @@ function Register() {
             </td>
           </tr>
           <tr>
+            <td>confirm password</td>
+            <td>
+              <input
+                type="text"
+                value={cpassword}
+                onChange={(e) => {
+                  setCpassword(e.target.value);
+                }}
+              ></input>
+            </td>
+          </tr>
+          <tr>
             <td></td>
-            <td><Link to="/login"><button className="btn btn-primary btn-block btn-large" onClick={savedetails}>SUBMIT</button></Link>
+            <td><button className="btn btn-primary btn-block btn-large" onClick={savedetails}>SUBMIT</button>
               
             </td>
           </tr>

@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import "../photos/item.css";
 import "./pur.css"
 export default function Purchase() {
+ // const [shop,setShop]=useState('cart')
   let cart = new Array();
   const [arr, setArr] = useState([]);
   arr.push(                                                       //available items for shopping
@@ -37,7 +38,8 @@ export default function Purchase() {
   let temp = localStorage.getItem("laptop");
   let temparr = JSON.parse(temp);
 
-  let add = (index,pid) => {                                      // add items to cart
+  let add = (index,pid) => {                                  // add items to cart
+    //setShop('no'); 
     let temp = arr[index];
     let oldcart = localStorage.getItem("cart");
     if (oldcart != null) {
@@ -65,8 +67,8 @@ export default function Purchase() {
   return (
     <div>
       <h1>Purchase</h1>
-      <div className="divset">
-      <Link to="/cart"><img className="shopcart" src={basket} ></img></Link>                
+      <div className="divset" >
+      <Link to="/cart"><img className="shopcart" src={basket} ></img>CART</Link>                
       </div>
       <table>
         {temparr.map((item, index) => {                          //display items form shopping
