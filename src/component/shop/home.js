@@ -7,6 +7,25 @@ import dell from '../photos/dellxps15.jpg';
 import lenovo from '../photos/lenovoyoga.jpeg';
 import acer from '../photos/AcerTravelmate.jpg'; 
 function Home() {
+
+
+
+
+
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
   return (
     <div>
       <div class="container">

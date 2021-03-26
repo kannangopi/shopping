@@ -15,6 +15,8 @@ function Register() {
   let arr = new Array();
   console.log(username, email, age, password);
   // let userdetails = new Array();
+
+  
   let savedetails = async () => {
 
 

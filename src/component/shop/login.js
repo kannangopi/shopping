@@ -1,9 +1,20 @@
 import React, {useState} from 'react';
 import {withRouter} from 'react-router';
+
 import './login.css'
 import "bootstrap/dist/css/bootstrap.min.css";
 function Login(){
-    let [userdetails,setUserdetails] = useState('');
+
+    
+
+
+
+
+
+
+
+
+                                                        //let [userdetails,setUserdetails] = useState('');
     const [checkname, setCheckname] = useState('');
     const [ checkpassword, setCheckpassword] = useState('');
     console.log(checkname,checkpassword);
@@ -22,7 +33,7 @@ function Login(){
         if( pass.length === 0){
             alert("type correct username and password");  
         }else{
-            setTimeout(()=>window.location.href="/purchase")
+            (window.location.href="/purchase")
             localStorage.setItem("cart",JSON.stringify([]));
         }
         
@@ -41,7 +52,7 @@ function Login(){
 
                         </td>
                         <td>
-                        <input type="text" onChange={e=>{setCheckname(e.target.value)}}></input>
+                        <input type="text" onChange={(e)=>{setCheckname(e.target.value)}}></input>
                         </td>
                     </tr>
                     <tr>
@@ -50,7 +61,7 @@ function Login(){
 
                         </td>
                         <td>
-                        <input type="password" onChange={e=>{setCheckpassword(e.target.value)}}></input>
+                        <input type="password" onChange={(e)=>{setCheckpassword(e.target.value)}}></input>
                         </td>
                     </tr>
                     <tr>
